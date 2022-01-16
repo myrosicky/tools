@@ -68,7 +68,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public int[] locateOnDesktop(String templImg){
-//        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         String srcImg = "image/screenImg.png";
         screenCapture(srcImg);
         return locate(srcImg, templImg);
@@ -128,13 +128,7 @@ public class ImageServiceImpl implements ImageService {
         return new int[]{ x, y};
     }
 
-    @Override
-    public void input(String text){
-//        for(char c : text.toUpperCase().toCharArray()){
-//            int t = (int) c;
-//            log.info("type {} for {}", t, c);
-//            typeKeyboard(t);
-//        }
+    public void input(String text, int waitSeconds){
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(new StringSelection(text), null);
 
@@ -142,6 +136,19 @@ public class ImageServiceImpl implements ImageService {
         robot.keyPress(KeyEvent.VK_V);
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_V);
+
+        waitFor(waitSeconds);
+    }
+    @Override
+    public void input(String text){
+        input(text, 1);
+    }
+
+    public void scroll(int times){
+        robot.mouseWheel(times);
+    }
+    public void scroll(){
+        scroll(1);
     }
 
     @Override
@@ -150,8 +157,13 @@ public class ImageServiceImpl implements ImageService {
     }
 
 
+    public void locateAndClickOnDesktop(String tmplIng){
+        locateAndClickOnDesktop(tmplIng, 0);
+    }
+
     @Override
     public void locateAndClickOnDesktop(String tmplIng, int waitSeconds){
+
         int[] location = locateOnDesktop(tmplIng);
         moveMouse(location[0], location[1]);
         waitFor(waitSeconds);
@@ -192,11 +204,14 @@ public class ImageServiceImpl implements ImageService {
         enter(0);
     }
 
-
     @Override
     public void enter(int waitSecond){
         typeKeyboard(KeyEvent.VK_ENTER);
         waitFor(waitSecond);
+    }
+
+    public void tab(){
+        typeKeyboard(KeyEvent.VK_TAB);
     }
 
     @Override
@@ -210,9 +225,30 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public void moveMouse(int x, int y){
-            robot.mouseMove(x, y);
-            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK); // mouse left click
+        robot.mouseMove(x, y);
+        click();
+    }
+
+    public void click(){
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK); // mouse left click
+    }
+
+    public void doubleCLick(){
+        click();
+        click();
+    }
+
+    public void rightClick(){
+        robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
+    }
+
+    public void inputOneByOne(String text){
+        for(char c : text.toCharArray()){
+            robot.keyPress((int)c);
+            robot.keyRelease((int)c);
+        }
     }
 
 }
