@@ -1,6 +1,10 @@
 package org.ll;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.ll.annotation.Excel;
+import org.ll.annotation.Field;
 import org.ll.svc.impl.PanelServiceImpl;
 import org.opencv.core.Core;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +35,18 @@ public class StartTools {
 
         @Override
         public void run(ApplicationArguments args) throws Exception {
-            panelService.reload("rent");//
-            panelService.startJob();
+//            panelService.reload("rent");//
+//            panelService.startJob();
+            TestE t = new TestE();
+            System.out.println(t.name);
         }
+    }
+
+    @Excel("/home/ll/documents/1.xlsx")
+    public class TestE{
+        @Field(column=1)
+        public String name;
+
     }
 
 }
