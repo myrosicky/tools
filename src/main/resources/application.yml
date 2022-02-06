@@ -1,1 +1,4 @@
 logging.level.root: INFO
+
+alibaba.api:
+  ip.enabled: false

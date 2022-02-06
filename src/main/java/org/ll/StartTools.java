@@ -1,7 +1,5 @@
 package org.ll;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.ll.annotation.Excel;
 import org.ll.annotation.Field;
@@ -28,17 +26,17 @@ public class StartTools {
                 ;
     }
 
-    @Autowired private PanelServiceImpl panelService;
 
     @Component
     public class AutoTestProcessor implements ApplicationRunner{
 
+        @Autowired private PanelServiceImpl panelService;
         @Override
         public void run(ApplicationArguments args) throws Exception {
 //            panelService.reload("rent");//
 //            panelService.startJob();
             TestE t = new TestE();
-            System.out.println(t.name);
+            log.info("t.name: {}", t.name);
         }
     }
 

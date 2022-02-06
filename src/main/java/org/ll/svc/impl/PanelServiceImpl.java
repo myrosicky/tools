@@ -2,7 +2,9 @@ package org.ll.svc.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ll.config.StepConfigProperties;
+import org.ll.svc.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.yaml.snakeyaml.Yaml;

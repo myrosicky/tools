@@ -1,20 +1,17 @@
 package org.ll.processor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import sun.reflect.generics.tree.Tree;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
-import javax.tools.Diagnostic;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 
 @SupportedAnnotationTypes({"org.ll.annotation.Excel", "org.ll.annotation.Field"})
@@ -26,11 +23,11 @@ public class ExcelProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         for ( TypeElement annotation : annotations ) {
             log.info("annotation: {}", annotation);
-            if(annotation instanceof org.ll.annotation.Excel) {
-
-            }
+//            if(annotation instanceof org.ll.annotation.Excel) {
+//
+//            }
             for ( Element element : roundEnv.getElementsAnnotatedWith(annotation) ) {
-
+                log.info("element: {}", element);
             }
         }
 
