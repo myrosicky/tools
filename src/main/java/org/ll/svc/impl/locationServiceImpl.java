@@ -24,5 +24,6 @@ public class locationServiceImpl {
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<String> resp = restTemplate.exchange("https://ipquery.market.alicloudapi.com/query?ip="+ip, HttpMethod.GET, requestEntity, String.class);
         log.info("resp: {}", resp);
+        return resp.getBody();
     }
 }
