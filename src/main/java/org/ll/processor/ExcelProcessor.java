@@ -17,7 +17,7 @@ import java.util.Set;
 
 @SupportedAnnotationTypes("org.ll.annotation.Excel")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
-@AutoService(Processor.class)
+//@AutoService(Processor.class)
 public class ExcelProcessor extends AbstractProcessor {
 
     @Override

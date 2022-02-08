@@ -11,6 +11,7 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -39,8 +40,8 @@ import org.opencv.core.Point;
 @Service @Slf4j
 public class ImageServiceImpl implements ImageService {
 
-    @Autowired private RestTemplate restTemplate;
-    @Autowired private Robot robot;
+    @Autowired @Lazy private RestTemplate restTemplate;
+    @Autowired @Lazy private Robot robot;
 
     @Override
     public String classify(Resource resource){
