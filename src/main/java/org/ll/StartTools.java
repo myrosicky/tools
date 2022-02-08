@@ -1,11 +1,8 @@
 package org.ll;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ll.annotation.Excel;
-import org.ll.annotation.Field;
 import org.ll.config.ExcelConfig;
 import org.ll.svc.impl.PanelServiceImpl;
-import org.opencv.core.Core;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

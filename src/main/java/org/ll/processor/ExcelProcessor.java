@@ -1,7 +1,6 @@
 package org.ll.processor;
 
 import com.google.auto.service.AutoService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,7 +11,6 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Set;
@@ -52,7 +50,7 @@ public class ExcelProcessor extends AbstractProcessor {
     }
 
     private void readFile(String filePath){
-        try(FileInputStream fis = new FileInputStream(new File(filePath));) {
+        try(FileInputStream fis = new FileInputStream(filePath)) {
             XSSFWorkbook sheets = new XSSFWorkbook(fis);
             Sheet sheet1 = sheets.getSheetAt(0);
             for (int i = 1; i < sheet1.getLastRowNum() + 1; i++) {
